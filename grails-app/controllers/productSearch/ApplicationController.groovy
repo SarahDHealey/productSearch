@@ -1,4 +1,4 @@
-package productsearch
+package productSearch
 
 import grails.core.GrailsApplication
 import grails.plugins.*

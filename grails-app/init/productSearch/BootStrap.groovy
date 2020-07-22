@@ -1,4 +1,4 @@
-package productsearch
+package productSearch
 
 class BootStrap {
 

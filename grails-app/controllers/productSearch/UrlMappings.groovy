@@ -1,4 +1,4 @@
-package productsearch
+package productSearch
 
 class UrlMappings {
 
@@ -9,6 +9,15 @@ class UrlMappings {
         post "/$controller(.$format)?"(action:"save")
         put "/$controller/$id(.$format)?"(action:"update")
         patch "/$controller/$id(.$format)?"(action:"patch")
+        //end::defaultMappings[]
+
+        //tag::productMapping[]
+        '/products'(resources: 'product') {grails
+            collection {
+                '/search'(controller: 'product', action: 'search')
+            }
+        }
+        //end::productMapping[]
 
         "/"(controller: 'application', action:'index')
         "500"(view: '/error')

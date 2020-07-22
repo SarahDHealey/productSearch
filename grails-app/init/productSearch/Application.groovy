@@ -1,4 +1,4 @@
-package productsearch
+package productSearch
 
 import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration
