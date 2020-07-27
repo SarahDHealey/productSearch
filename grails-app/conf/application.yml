@@ -71,10 +71,18 @@ grails:
         encoding: UTF-8
 
 ---
-grails:
+environments:
+development:
     mongodb:
         host: localhost
         port: 27017
-        #username: "sherlock"
-        #password: "holmes"
-        #databaseName: "hairpinturns"
+        #username: ""
+        #password: ""
+        #databaseName: "test"
+production:
+    mongodb:
+        host: localhost
+        port: 27017
+        #username: ""
+        #password: ""
+        #databaseName: "indubidably"

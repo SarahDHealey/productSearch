@@ -1,3 +1,4 @@
+
 package productSearch
 
 import grails.boot.GrailsApp

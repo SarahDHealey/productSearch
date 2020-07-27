@@ -3,6 +3,10 @@ import grails.util.Environment
 import org.springframework.boot.logging.logback.ColorConverter
 import org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter
 
+import ch.qos.logback.core.rolling.RollingFileAppender
+import ch.qos.logback.core.rolling.TimeBasedRollingPolicy
+import ch.qos.logback.core.util.FileSize
+
 import java.nio.charset.StandardCharsets
 
 conversionRule 'clr', ColorConverter
@@ -21,6 +25,18 @@ appender('STDOUT', ConsoleAppender) {
                         '%m%n%wex' // Message
     }
 }
+def HOME_DIR = "."
+
+appender("ROLLING", RollingFileAppender) {
+    encoder(PatternLayoutEncoder) {
+        pattern = "%level %logger - %msg%n"
+    }
+    rollingPolicy(TimeBasedRollingPolicy) {
+        fileNamePattern = "${HOME_DIR}/logs/myApp-%d{yyyy-MM-dd_HH-mm}.log"
+        maxHistory = 30
+        totalSizeCap = FileSize.valueOf("2GB")
+    }
+}
 
 def targetDir = BuildSettings.TARGET_DIR
 if (Environment.isDevelopmentMode() && targetDir != null) {
@@ -34,4 +50,6 @@ if (Environment.isDevelopmentMode() && targetDir != null) {
     }
     logger("StackTrace", ERROR, ['FULL_STACKTRACE'], false)
 }
-root(ERROR, ['STDOUT'])
+root(DEBUG, ['ROLLING'])
+logger("grails.app.controller.productSearch", DEBUG, ['ROLLING'], false)
+

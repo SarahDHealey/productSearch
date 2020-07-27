@@ -1,25 +1,31 @@
-package productSearch
-
+package productsearch
 
 import grails.rest.RestfulController
 import groovy.transform.CompileStatic
-import productSearch.Product
 
-class ProductController extends RestfulController {
+//tag::controller[]
+@CompileStatic
+class ProductController extends RestfulController<Product> {
     static responseFormats = ['json', 'xml']
     ProductController() {
         super(Product)
     }
-
-    def search(String queryParam, Integer max) {
-        if(queryParam) {
-            def query = Product.where {
-                name ==~ ~/$queryParam/
-            }
-            respond query.list(max: Math.min(max ?: 10, 100))
-        }
-        else {
-            respond([])
-        }
-    }
+    //end::controller[]
+    //tag::searchAction[]
+//    def search(String q, Integer max ) { // <1>
+//        if (q) {
+//            //tag::whereQuery[]
+//            def query = Product.where { // <2>
+//                name ==~ ~/$q/
+//            }
+//            //end::whereQuery[]
+//            //tag::respond[]
+//            respond query.list(max: Math.min( max ?: 10, 100)) // <3>
+//            //end::respond[]
+//        }
+//        else {
+//            respond([]) // <4>
+//        }
+//    }
+    //end::searchAction[]
 }

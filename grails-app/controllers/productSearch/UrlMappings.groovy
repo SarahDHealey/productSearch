@@ -12,7 +12,7 @@ class UrlMappings {
         //end::defaultMappings[]
 
         //tag::productMapping[]
-        '/products'(resources: 'product') {grails
+        '/products'(resources: 'product') {
             collection {
                 '/search'(controller: 'product', action: 'search')
             }
